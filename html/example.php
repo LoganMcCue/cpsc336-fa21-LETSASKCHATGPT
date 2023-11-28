@@ -1,7 +1,15 @@
 <?php
+$servername = "Cpsc336-final.cimurtpxm8gn.us-east-1.rds.amazonaws.com ";
+$username = "admin";
+$password = "Welcome1";
+$dbname = "cpsc336";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
 $limit = 99; // Total limit for sign-ups
 $counterFile = 'registration_counter.txt';
-
+if($conn->connect_error) {
+	die("Connection failed: :".$conn->connect_error);
+}
 // Check if the counter file exists, and create it if it doesn't
 if (!file_exists($counterFile)) {
     file_put_contents($counterFile, "0");
