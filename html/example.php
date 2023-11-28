@@ -15,9 +15,9 @@ if (isset($_POST['register'])) {
     if ($currentCount < $limit) {
         $currentCount++;
         file_put_contents($counterFile, $currentCount);
-        echo "You have successfully registered. Current count: $currentCount";
+        echo "You have successfully added a person. Current count: $currentCount";
     } else {
-        echo "Sorry, registration is full. Total limit reached.";
+        echo "Sorry, the store is full. Total limit reached.";
     }
 }
 
@@ -26,9 +26,9 @@ if (isset($_POST['unregister'])) {
     if ($currentCount > 0) {
         $currentCount--;
         file_put_contents($counterFile, $currentCount);
-        echo "You have successfully unregistered. Current count: $currentCount";
+        echo "You have successfully unadded a person. Current count: $currentCount";
     } else {
-        echo "No one is currently registered.";
+        echo "No one is currently in the store.";
     }
 }
 ?>
@@ -36,16 +36,16 @@ if (isset($_POST['unregister'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up / Unregister</title>
+    <title>Add and Subtract Customers</title>
 </head>
 <body>
-    <h1>Sign Up / Unregister</h1>
-    <p>Total limit: <?php echo $limit; ?></p>
+    <h1>Add and Subtract Customers</h1>
+    <p>Limit in store: <?php echo $limit; ?></p>
     <p>Current count: <?php echo $currentCount; ?></p>
 
     <form method="post">
-        <input type="submit" name="register" value="Register">
-        <input type="submit" name="unregister" value="Unregister">
+        <input type="submit" name="register" value="Add">
+        <input type="submit" name="unregister" value="Subtract">
     </form>
 </body>
 </html>
