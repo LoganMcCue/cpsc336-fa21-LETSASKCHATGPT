@@ -1,9 +1,9 @@
 <?php
+session_start();
 $servername = "Cpsc336-final.cimurtpxm8gn.us-east-1.rds.amazonaws.com ";
 $username = "admin";
 $password = "Welcome1";
 $dbname = "cpsc336";
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 $limit = 99; // Total limit for sign-ups
 $counterFile = 'registration_counter.txt';
@@ -22,6 +22,13 @@ if (isset($_POST['register'])) {
     // Register a new user
     if ($currentCount < $limit) {
         $currentCount++;
+	$sql = "SELECT user FROM users WHERE user='".$POST["user"]."'
+	$result = $conn->query($sql);
+	if($result->num_rows > 0){
+		while($row=$result->fetch_assoc()){
+			echo "Welcome: ".$column["users"]."
+		}
+	}
         file_put_contents($counterFile, $currentCount);
         echo "You have successfully added a person. Current count: $currentCount";
     } else {
