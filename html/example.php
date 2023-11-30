@@ -1,6 +1,6 @@
 <?php
 session_start();
-$servername = "Cpsc336-final.cimurtpxm8gn.us-east-1.rds.amazonaws.com ";
+$servername = "Cpsc336-final.cimurtpxm8gn.us-east-1.rds.amazonaws.com";
 $username = "admin";
 $password = "Welcome1";
 $dbname = "cpsc336";
@@ -17,23 +17,22 @@ if (!file_exists($counterFile)) {
 
 // Get the current count from the counter file
 $currentCount = (int)file_get_contents($counterFile);
-
+//echo "hello";
 if (isset($_POST['register'])) {
+	echo "hello";
     // Register a new user
     if ($currentCount < $limit) {
-        $currentCount++;
-	$sql = "SELECT user FROM users WHERE user='".$POST["user"]."'
-	$result = $conn->query($sql);
-	if($result->num_rows > 0){
-		while($row=$result->fetch_assoc()){
-			echo "Welcome: ".$column["users"]."
-		}
-	}
+        //$add = INSERT INTO users (.$_POST["user"].);
+	$currentCount++;
+	$sql = "SELECT * FROM 336users";
+	//$result = $conn->query($sql);
+	//echo "$result";
         file_put_contents($counterFile, $currentCount);
         echo "You have successfully added a person. Current count: $currentCount";
     } else {
         echo "Sorry, the store is full. Total limit reached.";
     }
+
 }
 
 if (isset($_POST['unregister'])) {
