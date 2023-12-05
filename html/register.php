@@ -39,6 +39,11 @@ if ($countResult->num_rows > 0) {
 //$conn->close();
 
 if (isset($_POST['unregister'])) {
+    $countQuery = "SELECT count FROM 336users";
+    $countResult = $conn->query($countQuery);
+    $row = $countResult->fetch_assoc();
+    $count = $row["count"];
+    if($count > 0){
     $updateQuery = "UPDATE 336users SET count = count - 1";
     $result = $conn->query($updateQuery);
 
@@ -79,16 +84,17 @@ if ($countResult->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
+}
 $conn->close();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add and Subtract Customers</title>
+    <title>Add,Subtract,clear Customers</title>
 </head>
 <body>
-    <h1>Add and Subtract Customers</h1>
+    <h1>Add, Subtract, and clear  Customers</h1>
+    <p1>Store Limit: <?php echo $max_limit; ?></p1>
     <p>Current count: <?php echo $count; ?></p>
 
     <form method="post">
