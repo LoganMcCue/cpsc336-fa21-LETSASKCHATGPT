@@ -5,18 +5,25 @@ $username = "admin";
 $password = "Welcome1";
 $dbname = "cpsc336";
 $conn = new mysqli($servername, $username, $password, $dbname);
-$max_limit = 99; // Total limit for sign-ups
-$low_limit = 0; // lower limit
+$max_limit = 99;
+$low_limit = 0; 
 if($conn->connect_error) {
 	die("Connection failed: :".$conn->connect_error);
 }
 if (isset($_POST['register'])) {
+    $countQuery = "SELECT count FROM 336users";
+    $countResult = $conn->query($countQuery);
+    $row = $countResult->fetch_assoc();
+    $count = $row["count"];
+    //echo "$count";
+    if($count < 99){
     $updateQuery = "UPDATE 336users SET count = count + 1";
     $result = $conn->query($updateQuery);
     if (!$result) {
         echo "Error updating count: " . $conn->error;
     }
-}
+  }
+
 $countQuery = "SELECT count FROM 336users";
 $countResult = $conn->query($countQuery);
 
@@ -28,7 +35,7 @@ if ($countResult->num_rows > 0) {
  else {
     echo "0 results";
 }
-
+}
 //$conn->close();
 
 if (isset($_POST['unregister'])) {
