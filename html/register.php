@@ -93,7 +93,7 @@ $conn->close();
     <title>Add,Subtract,clear Customers</title>
 </head>
 <body>
-    <h1>Add, Subtract, and clear  Customers</h1>
+    <h1 style="color:red">Add, Subtract, and clear  Customers</h1>
     <p1>Store Limit: <?php echo $max_limit; ?></p1>
     <p>Current count: <?php echo $count; ?></p>
 
